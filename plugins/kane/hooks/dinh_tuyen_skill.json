@@ -1,0 +1,96 @@
+{
+  "plugin": "kane",
+  "tang": "general",
+  "ghi_chu": "Chưa rõ việc thuộc skill nào thì gọi `kane:kane`.",
+  "skills": [
+    {
+      "skill": "kane:write-human-docs",
+      "viec": "viết tài liệu cho người đọc: README, hướng dẫn, báo cáo, thiết kế, ADR, bàn giao, changelog, mô tả PR",
+      "tu_khoa": [
+        "readme",
+        "viet tai lieu",
+        "tai lieu huong dan",
+        "huong dan su dung",
+        "postmortem",
+        "changelog",
+        "ban giao",
+        "adr",
+        "mo ta pr",
+        "viet bao cao"
+      ]
+    },
+    {
+      "skill": "kane:wiki",
+      "viec": "wiki Obsidian: dựng vault, nạp nguồn, hỏi wiki, lưu ghi chú, canvas",
+      "tu_khoa": [
+        "obsidian",
+        "vault",
+        "second brain",
+        "knowledge base",
+        "luu vao wiki",
+        "ghi vao wiki",
+        "nap vao wiki",
+        "hoi wiki"
+      ]
+    },
+    {
+      "lenh": "/kane:init",
+      "viec": "khởi tạo dự án mới có điều phối agent",
+      "tu_khoa": [
+        "khoi tao du an",
+        "du an moi",
+        "bat dau du an"
+      ]
+    },
+    {
+      "skill": "kane:resume",
+      "viec": "tiếp tục dự án đã khởi tạo (.ai/STATE.md)",
+      "tu_khoa": [
+        "tiep tuc du an",
+        "lam tiep du an"
+      ]
+    },
+    {
+      "skill": "kane:maintain",
+      "viec": "bảo trì định kỳ: sức khoẻ code, dọn bộ nhớ, nợ kỹ thuật",
+      "tu_khoa": [
+        "bao tri",
+        "no ky thuat",
+        "suc khoe code",
+        "don dep repo"
+      ]
+    },
+    {
+      "skill": "kane:sync",
+      "viec": "đồng bộ kane với chuẩn gốc trên máy",
+      "tu_khoa": [
+        "cap nhat kane",
+        "dong bo kane"
+      ]
+    },
+    {
+      "skill": "kane:kane",
+      "viec": "chưa rõ dùng chuẩn nào; hỏi về kane",
+      "tu_khoa": [
+        "kane",
+        "chuan cua toi",
+        "dung skill nao"
+      ]
+    }
+  ],
+  "vi_du": [
+    {
+      "cau": "viết README cho repo này",
+      "skill": "kane:write-human-docs"
+    },
+    {
+      "cau": "sửa lỗi off-by-one trong hàm parse",
+      "skill": null
+    },
+    {
+      "cau": "tìm trên web giúp tôi giá GPU",
+      "skill": null
+    }
+  ],
+  "ghi_chu_tu_khoa": "Từ khoá có dấu + nghĩa là mọi phần phải có trong câu (không cần liền nhau), ví dụ \"review+ve roi\"."
+}

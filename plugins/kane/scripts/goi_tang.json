@@ -1,0 +1,48 @@
+{
+ "do_ngay": "2026-11-26",
+ "co_so": 29098,
+ "marketplace": [
+  "kane-local",
+  "kane"
+ ],
+ "plugins": {
+  "kane": {
+   "phu_thuoc": []
+  }
+ },
+ "goi": [
+  {
+   "ma": "loi",
+   "ten": "Lõi",
+   "loi": true,
+   "plugin": [
+    "kane"
+   ],
+   "token": 10141,
+   "mo_ta": "Điều phối agent, sửa mã, viết tài liệu, wiki (luôn bật)",
+   "ten_ngan": "core",
+   "bac": true
+  }
+ ],
+ "loai_viec": [
+  {
+   "buoc": "nhom",
+   "cau": "Dự án này thuộc nhóm việc nào? (chọn nhiều; không chọn gì: chỉ core)",
+   "header": "Nhóm",
+   "nhieu": true,
+   "muc": [
+    {
+     "ma": "sua-ma",
+     "nhan": "Chỉ sửa mã, viết tài liệu (core)",
+     "goi": []
+    },
+    {
+     "ma": "tu-chon",
+     "nhan": "Tự chọn từng gói",
+     "tu_chon": true,
+     "bat": "gói bạn chọn ở bước sau"
+    }
+   ]
+  }
+ ]
+}

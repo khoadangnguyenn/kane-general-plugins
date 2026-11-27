@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "exa": {
+      "type": "http",
+      "url": "https://mcp.exa.ai/mcp"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/hooks/pw.js"
+      ],
+      "env": {
+        "KANE_PROJECT": "${CLAUDE_PROJECT_DIR}"
+      }
+    },
+    "codegraph": {
+      "type": "stdio",
+      "command": "codegraph",
+      "args": [
+        "serve",
+        "--mcp",
+        "--path",
+        "${CLAUDE_PROJECT_DIR}"
+      ]
+    },
+    "pdf": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@sylphx/anymd@8.5.7",
+        "--allow-dir=${CLAUDE_PROJECT_DIR}"
+      ]
+    },
+    "obsidian": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@bitbonsai/mcpvault@0.18.3",
+        "${CLAUDE_PROJECT_DIR}/wiki"
+      ]
+    }
+  }
+}

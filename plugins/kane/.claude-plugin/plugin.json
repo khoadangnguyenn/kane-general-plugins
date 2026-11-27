@@ -1,0 +1,9 @@
+{
+  "name": "kane",
+  "version": "0.6.13",
+  "description": "Saves tokens by routing work to cheaper agents, and gives you a documentation writer, an Obsidian wiki, a phase runner with gates, and shared MCP tools.",
+  "author": {
+    "name": "khoadangnguyenn"
+  },
+  "license": "UNLICENSED"
+}

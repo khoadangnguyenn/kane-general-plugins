@@ -1,0 +1,14 @@
+{
+  "name": "kane",
+  "owner": {
+    "name": "khoadangnguyenn"
+  },
+  "description": "Marketplace for the kane plugins in this repository.",
+  "plugins": [
+    {
+      "name": "kane",
+      "source": "./plugins/kane",
+      "description": "Saves tokens by routing work to cheaper agents, and gives you a documentation writer, an Obsidian wiki, a phase runner with gates, and shared MCP tools."
+    }
+  ]
+}
