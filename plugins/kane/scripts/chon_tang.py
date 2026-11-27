@@ -3,7 +3,7 @@
 
 Danh mục gói (plugin, dấu hiệu dự án, token, từ khoá) nằm hết trong goi_tang.json; thêm plugin con = thêm dòng ở đó.
 Cơ chế: Claude Code đọc `enabledPlugins` trong <dự án>/.claude/settings.local.json (cá nhân, không commit), khoá này
-thắng cài đặt người dùng; đổi có hiệu lực sau `/reload-plugins` hoặc khi mở phiên mới. Chỉ đụng plugin ĐÃ CÀI; gói "giu" không bị đổi.
+thắng cài đặt người dùng; đổi có hiệu lực sau `/reload-plugins` hoặc khi mở phiên mới. Chỉ đụng plugin ĐÃ CÀI; gói "giu" không bị đổi; plugin gói không có danh mục (chỉ khai báo phụ thuộc) luôn bị tắt ở dự án.
 Đường dẫn ~/.claude đổi được bằng KANE_CLAUDE_HOME, danh mục bằng KANE_GOI_TANG (để test)."""
 import fnmatch
 import json
@@ -33,18 +33,30 @@ def ten_plugin_biet():
     return set(CFG["plugins"]) | {p for g in GOI for p in g["plugin"]}
 
 
-def da_cai(thu_muc):
-    """{plugin: 'plugin@marketplace'} cho plugin trong danh mục đã cài ở mức người dùng hoặc dự án này."""
-    ra, biet = {}, ten_plugin_biet()
+def _ban_cai(thu_muc):
+    """(tên, 'tên@marketplace') của plugin cùng marketplace kane đã cài ở mức người dùng hoặc dự án này, kể cả plugin không có trong danh mục."""
     for key, ban in doc_json(claude_home() / "plugins" / "installed_plugins.json").get("plugins", {}).items():
         name, _, mkt = key.partition("@")
-        if name not in biet or mkt not in CFG["marketplace"]:
+        if mkt not in CFG["marketplace"]:
             continue
         for b in ban if isinstance(ban, list) else []:
             pp = b.get("projectPath")
             if b.get("scope") == "user" or (pp and str(thu_muc).startswith(pp)):
-                ra[name] = key
-    return ra
+                yield name, key
+                break
+
+
+def da_cai(thu_muc):
+    """{plugin: 'plugin@marketplace'} cho plugin trong danh mục đã cài ở mức người dùng hoặc dự án này."""
+    biet = ten_plugin_biet()
+    return {name: key for name, key in _ban_cai(thu_muc) if name in biet}
+
+
+def plugin_goi(thu_muc):
+    """Khoá 'plugin@marketplace' của plugin gói: cùng marketplace, đã cài, không có trong danh mục (chỉ khai báo phụ thuộc, không phải lựa chọn).
+    Claude Code báo lỗi "Dependency ... is disabled" nếu plugin này còn bật mà một plugin nó cần bị tắt ở dự án, nên `ghi` luôn tắt nó."""
+    biet = ten_plugin_biet()
+    return [key for name, key in _ban_cai(thu_muc) if name not in biet]
 
 
 def bao_ham(plugins):
@@ -289,12 +301,15 @@ def ghi(thu_muc, arg):
     ep = cu.setdefault("enabledPlugins", {})
     for p in quan_ly & set(cai):
         ep[cai[p]] = p in chon
+    tat_goi = plugin_goi(thu_muc)
+    for k in tat_goi:
+        ep[k] = False
     if ca_nhan:
         ep[cai[CA_NHAN]] = True
         chon.add(CA_NHAN)
     f.parent.mkdir(parents=True, exist_ok=True)
     f.write_text(json.dumps(cu, ensure_ascii=False, indent=2) + "\n", "utf-8")
-    return {"da_ghi": str(f), "bat": sorted(chon), "tat": sorted((quan_ly & set(cai)) - chon), "tokens": tokens(chon),
+    return {"da_ghi": str(f), "bat": sorted(chon), "tat": sorted((quan_ly & set(cai)) - chon), "tat_goi": tat_goi, "tokens": tokens(chon),
             "ghi_chu": "gõ /reload-plugins một lần để áp dụng ngay (hoặc mở phiên mới)"}
 
 

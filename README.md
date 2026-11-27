@@ -38,11 +38,10 @@ A skill starts on its own when your request matches. You can also call it by nam
 ## Install
 
 ```
-claude plugin marketplace add <owner>/kane-general-plugins
-claude plugin install kane@kane
+claude plugin install kane --marketplace khoadangnguyenn/kane-general-plugins
 ```
 
-Replace `<owner>` with the GitHub account that publishes this repository. Install only the plugins you need; only installed plugins load their skills.
+This adds the marketplace and installs the plugin in one step. Install the whole tier, then choose per project. Until you run `/kane:init` in a project, every installed plugin is on there. `/kane:init` asks what kind of work the project is, turns on the packs that fit and turns off the other installed kane plugins for that project only. It saves the choice in `.claude/settings.local.json` inside the project, a personal file you do not commit. Type `/reload-plugins` afterwards to apply it.
 
 ## Update
 

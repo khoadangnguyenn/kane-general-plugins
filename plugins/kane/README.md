@@ -36,11 +36,6 @@ Hooks are small scripts that run on Claude Code events. kane's hooks copy refere
 
 ## Install
 
-Run these in a terminal, not in the Claude Code chat. You need read access to the kane repository you were given, so accept the GitHub invitation first. Git must also sign in to GitHub without a prompt, for example after `gh auth login` and `gh auth setup-git`.
+You need read access to the kane repository you were given, so accept the GitHub invitation first. Git must also sign in to GitHub without a prompt, for example after `gh auth login` and `gh auth setup-git`.
 
-```
-claude plugin marketplace add <owner>/<your-kane-repository>
-claude plugin install kane@kane
-```
-
-Replace `<owner>` with the owner's GitHub name. Open a new session afterwards.
+This plugin comes with that repository. Its top-level README, [`../../README.md`](../../README.md), has the one command that installs the whole tier. Run it in a terminal, not in the Claude Code chat, then open a new session.
